@@ -9,4 +9,8 @@ module CurrentCart
       @cart = Cart.create
       session[:cart_id] = @cart.id
     end
+
+    def reset_counter
+      session[:counter] = nil
+    end
 end
