@@ -1,14 +1,24 @@
 <% if notice %>
-  <p id="notice"><%= notice %></p>V>
+  <p id="notice"><%= notice %></p>
 <% end %>
 
 <h2>Your Cart</h2>
 <table>
+  <th>Quantity</th>
+  <th>Title</th>
+  <th>Price</th>
+  <th class="item_price">Calculated price</th>
+  <th></th>
   <% @cart.line_items.each do |item| %>
     <tr>
       <td><%= item.quantity %>&times;</td>
       <td><%= item.product.title %></td>
+      <td><%= number_to_currency(item.price) %></td>
       <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+      <td>
+        <%= button_to 'Remove', item, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
 
