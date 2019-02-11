@@ -1,6 +1,8 @@
 class StoreController < ApplicationController
   include ActionView::Helpers::TextHelper
+  include CurrentCart
   before_action :set_counter
+  before_action :set_cart
 
   def index
     @products = Product.order(:title)
