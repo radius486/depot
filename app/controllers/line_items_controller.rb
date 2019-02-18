@@ -32,6 +32,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -70,7 +71,7 @@ class LineItemsController < ApplicationController
       @line_item.cart.destroy if @line_item.cart.id == session[:cart_id]
       session[:cart_id] = nil
       respond_to do |format|
-        format.html { redirect_to store_url, notice: 'Your cart is currently empty' }
+        format.html { redirect_to store_url }
         format.json { head :no_content }
       end
     else

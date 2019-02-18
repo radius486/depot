@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body class='<%= controller.controller_name %>'>
@@ -16,9 +17,9 @@
     </div>
     <div id="columns">
       <div id="side">
-        <div id='cart'>
-          <%= render(@cart) %>
-        </div>
+        <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+          <%= render @cart %>
+        <% end %>
         <p style="color: #fff"><%= Time.new.strftime("%Y-%m-%d %H:%M") %></p>
         <ul>
           <li><a href="http://www....">Home</a></li>
