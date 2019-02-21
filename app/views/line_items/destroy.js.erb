@@ -1,0 +1,19 @@
+
+console.log($('#cart tr.line-item .item_quantity').html())
+
+if ($('#cart tr.line-item').length == 1 && $('#cart tr.line-item .item_quantity').html() == '1×') {
+  $('#cart').fadeOut(500);
+  $('#cart table').fadeOut(500);
+
+  setTimeout(function() {
+    $('#cart').html('')
+  }, 500)
+} else {
+  $('#cart').html("<%= escape_javascript render(@line_item.cart) %>");
+
+  $('.current_item')
+    .css({'background-color':'#88ff88'})
+    .animate({'background-color':'#114411'}, 1000);
+
+}
+

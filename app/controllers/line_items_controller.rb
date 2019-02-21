@@ -72,11 +72,13 @@ class LineItemsController < ApplicationController
       session[:cart_id] = nil
       respond_to do |format|
         format.html { redirect_to store_url }
+        format.js { }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to store_url, notice: 'Line item was successfully destroyed.' }
+        format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
         format.json { head :no_content }
       end
     end
